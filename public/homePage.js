@@ -36,35 +36,31 @@ money.addMoneyCallback = function(data) {
             ProfileWidget.showProfile(response.data);
             money.setMessage(false, `Успешное пополонение баланса`);
         } else {
-            money.setMessage(true, `Ошибка`);
+            money.setMessage(true, response.data);
         }
     });
 }
 
 money.conversionMoneyCallback = function(data) {
     ApiConnector.convertMoney(data, (response) =>{
-        if(response.success){
             if(response.success){
                 ProfileWidget.showProfile(response.data);
                 money.setMessage(false, `Успешная конвертация`);
             } else {
-                money.setMessage(true, `Ошибка`);
+                money.setMessage(true, response.data);
             }
-        }
     });
 }
 
 money.sendMoneyCallback = function(data) {
     ApiConnector.transferMoney(data, (response) =>{
         console.log(response);
-        if(response.success){
             if(response.success){
                 ProfileWidget.showProfile(response.data);
-                money.setMessage(false, `Успешная конвертация`);
+                money.setMessage(false, `Успешный перевод`);
             } else {
-                money.setMessage(true, `Ошибка`);
+                money.setMessage(true, response.data);
             }
-        }
     });
 }
 
@@ -86,7 +82,7 @@ favorite.addUserCallback = function(data) {
             money.updateUsersList(response.data);
             money.setMessage(false, `Успешное добавление`);
         } else {
-            money.setMessage(true, `Ошибка`);
+            money.setMessage(true, response.data);
         }
     });
 }
@@ -99,7 +95,7 @@ favorite.removeUserCallback = function(data) {
             money.updateUsersList(response.data);
             favorite.setMessage(false, `Успешное удаление`);
         } else {
-            favorite.setMessage(true, `Ошибка`);
+            favorite.setMessage(true, response.data);
         }
     });
 }
